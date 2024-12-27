@@ -1,16 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default function Post({ post, likes, onRemove }) {
+export default function Post({ post, onRemove, onRead }) {
   return (
     <>
       <article>
-        <strong>{post.title}</strong>
+        <strong>{post.read ? <s>{post.title}</s> : post.title}</strong>
+        {!post.read && <button onClick={() => onRead(post.id)}>Ler</button>}
         <button onClick={() => onRemove(post.id)}>Remover</button>
         <br />
         <small>{post.subtitle}</small>
         <br />
-        Média: {likes / 2}
+        Média: {post.likes / 2}
       </article>
       <br />
     </>
@@ -18,11 +19,13 @@ export default function Post({ post, likes, onRemove }) {
 }
 
 Post.propTypes = {
-  likes: PropTypes.number.isRequired,
-  onRemove: PropTypes.func.isRequired,
   post: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
+    likes: PropTypes.number.isRequired,
+    read: PropTypes.bool.isRequired,
   }).isRequired,
+  onRemove: PropTypes.func.isRequired,
+  onRead: PropTypes.func.isRequired,
 };

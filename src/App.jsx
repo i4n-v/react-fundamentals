@@ -8,24 +8,28 @@ const staticPosts = [
     title: "Title#01",
     subtitle: "Sub#01",
     likes: 10,
+    read: true,
   },
   {
     id: 2,
     title: "Title#02",
     subtitle: "Sub#02",
     likes: 20,
+    read: false,
   },
   {
     id: 3,
     title: "Title#03",
     subtitle: "Sub#03",
     likes: 30,
+    read: false,
   },
   {
     id: 4,
     title: "Title#04",
     subtitle: "Sub#04",
     likes: 40,
+    read: false,
   },
 ];
 
@@ -54,6 +58,16 @@ export default function App() {
     });
   }
 
+  function handleRead(id) {
+    setPosts((posts) => {
+      const newPosts = [...posts];
+      const postIndex = posts.findIndex((post) => post.id === id);
+      newPosts[postIndex].read = true;
+
+      return newPosts;
+    });
+  }
+
   return (
     <>
       <Header>
@@ -61,8 +75,8 @@ export default function App() {
         <button onClick={handleRefresh}>Atualizar</button>
       </Header>
       <hr />
-      {posts.map(({ likes, ...post }) => (
-        <Post key={post.id} post={post} likes={likes} onRemove={handleRemovePost} />
+      {posts.map((post) => (
+        <Post key={post.id} post={post} onRead={handleRead} onRemove={handleRemovePost} />
       ))}
     </>
   );

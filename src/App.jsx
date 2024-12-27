@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import Post from "./Post";
-import Header from "./Header";
+import Post from "./components/Post";
+import Header from "./components/Header";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import Button from "./components/Button";
 
 const staticPosts = [
   {
@@ -69,15 +71,15 @@ export default function App() {
   }
 
   return (
-    <>
+    <ThemeProvider>
       <Header>
         <h2>Posts da semana</h2>
-        <button onClick={handleRefresh}>Atualizar</button>
+        <Button onClick={handleRefresh}>Atualizar</Button>
       </Header>
       <hr />
       {posts.map((post) => (
         <Post key={post.id} post={post} onRead={handleRead} onRemove={handleRemovePost} />
       ))}
-    </>
+    </ThemeProvider>
   );
 }

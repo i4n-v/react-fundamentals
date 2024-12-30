@@ -1,11 +1,12 @@
-import React, { useMemo } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import PostHeader from "../PostHeader";
+import { Subtitle, Rate, Container } from "./styles";
 
 export default function Post({ post, onRemove, onRead }) {
   return (
     <>
-      <article>
+      <Container removed={post.removed}>
         <PostHeader
           post={{
             id: post.id,
@@ -16,11 +17,9 @@ export default function Post({ post, onRemove, onRead }) {
           onRead={onRead}
           onRemove={onRemove}
         />
-        <br />
-        <small>{post.subtitle}</small>
-        <br />
-        Média: {post.likes / 2}
-      </article>
+        <Subtitle>{post.subtitle}</Subtitle>
+        <Rate>Média: {post.likes / 2}</Rate>
+      </Container>
     </>
   );
 }

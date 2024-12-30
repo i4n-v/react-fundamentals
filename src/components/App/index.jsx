@@ -3,6 +3,7 @@ import Post from "../Post";
 import Header from "../Header";
 import { ThemeProvider } from "../../contexts/ThemeContext";
 import Button from "../Button";
+import { MainTitle } from "./styles";
 
 const staticPosts = [
   {
@@ -82,7 +83,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <Header>
-        <h2>Posts da semana</h2>
+        <MainTitle as="h2">Posts da semana</MainTitle>
         <Button onClick={handleRefresh}>Atualizar</Button>
       </Header>
       <hr />

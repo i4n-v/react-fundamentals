@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import Post from "./components/Post";
-import Header from "./components/Header";
-import { ThemeProvider } from "./contexts/ThemeContext";
-import Button from "./components/Button";
-import styles from "./index.scss";
+import Post from "../Post";
+import Header from "../Header";
+import { ThemeProvider } from "../../contexts/ThemeContext";
+import Button from "../Button";
 
 const staticPosts = [
   {
@@ -83,7 +82,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <Header>
-        <h2 className={styles.title}>Posts da semana</h2>
+        <h2>Posts da semana</h2>
         <Button onClick={handleRefresh}>Atualizar</Button>
       </Header>
       <hr />

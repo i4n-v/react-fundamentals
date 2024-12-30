@@ -1,21 +1,11 @@
 import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import PostHeader from "../PostHeader";
-import styles from "./index.scss";
-import mountClassName from "../../utils/mountClassName";
 
 export default function Post({ post, onRemove, onRead }) {
-  const postClassName = useMemo(() => {
-    const className = mountClassName([styles.post, styles.removed], (classItem) => {
-      return (post.removed && classItem === styles.removed) || classItem !== styles.removed;
-    });
-
-    return className;
-  }, [post.removed]);
-
   return (
     <>
-      <article className={postClassName}>
+      <article>
         <PostHeader
           post={{
             id: post.id,
